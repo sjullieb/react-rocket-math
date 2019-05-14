@@ -12,25 +12,25 @@ export const initialState = {
     name: "Anya",
     currentOperation: "Addition",
     currentLevel: "E",
-    lastAttemptId: null
+    lastSetId: null
   },
 
-  currentAttempt: {
+  currentSet: {
     timeStamp: null,
     operator: "+",
-    equations: [
+    facts: [
       { term1: 7, term2: 2, result: 9, answer: 10 },
       { term1: 5, term2: 9, result: 14, answer: null }
     ]
   },
-  attempts: {
+  sets: {
     1: {
       timeStamp: null,
       operator: "+",
       level: "D",
       result: "pass",
       correctAnswers: 4,
-      equations: [
+      facts: [
         { term1: 5, term2: 2, result: 7, answer: 7 },
         { term1: 6, term2: 8, result: 14, answer: 14 },
         { term1: 7, term2: 1, result: 9, answer: 10 },
@@ -43,7 +43,7 @@ export const initialState = {
       level: "D",
       result: "fail",
       correctAnswers: 3,
-      equations: [
+      facts: [
         { term1: 5, term2: 2, result: 7, answer: 7 },
         { term1: 6, term2: 8, result: 14, answer: 14 },
         { term1: 7, term2: 1, result: 9, answer: 10 },

@@ -4,10 +4,10 @@ import { saveAnswer} from "./../actions";
 import { connect } from 'react-redux';
 import { v4 } from 'uuid';
 
-function EquationForm({ dispatch, equation }){
+function FactForm({ dispatch, fact }){
     let _answer = null;
     //const { initialState, types } = constants;
-    const { id, term1, term2, operator } = equation;
+    const { id, term1, term2, operator } = fact;
 
     function handleAnswerSubmission(event){
         event.preventDefault();
@@ -17,7 +17,7 @@ function EquationForm({ dispatch, equation }){
 
     return(
         <div>
-            <form onSubmit={handleAnswerSubmission}>
+            <form onSubmit={handleAnswerSubmission()}>
                 <label>{term1}</label><br />
                 <label>{operator}</label><br />
                 <label>{term2}</label><br />
@@ -29,4 +29,4 @@ function EquationForm({ dispatch, equation }){
     );
 };
 
-export default connect()(EquationForm);
+export default connect()(FactForm);

@@ -1,15 +1,15 @@
-import constants from "./../constants";
+import constants from "../constants";
 const { initialState, types } = constants;
 
-const currentAttemptReducer = (state = initialState.currentAttempt, action) => {
-  let newEquationsArray;
-  let newCurrentAttemptSlice;
+const currentSetReducer = (state = initialState.currentSet, action) => {
+  let newFactsArray;
+  let newCurrentSetSlice;
   switch (action.type) {
     case types.SAVE_ANSWER:
-      newEquationsArray = state.equations.slice();
-      newEquationsArray[action.equationId].answer = action.answer;
-      newCurrentAttemptSlice = Object.assign({}, state, {equations: newEquationsArray});   
-      return newCurrentAttemptSlice;
+      newFactsArray = state.facts.slice();
+      newFactsArray[action.factId].answer = action.answer;
+      newCurrentSetSlice = Object.assign({}, state, {facts: newFactsArray});   
+      return newCurrentSetSlice;
     //   const newArrayPosition = state[action.currentSongId].arrayPosition + 1;
     //   newSongsByIdEntry = Object.assign({}, state[action.currentSongId], {
     //     arrayPosition: newArrayPosition
@@ -56,4 +56,4 @@ const currentAttemptReducer = (state = initialState.currentAttempt, action) => {
   }
 };
 
-export default currentAttemptReducer;
+export default currentSetReducer;

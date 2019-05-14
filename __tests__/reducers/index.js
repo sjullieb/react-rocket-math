@@ -2,21 +2,22 @@ import constants from "./../../src/constants";
 import songChangeReducer from "./../../src/reducers/songChangeReducer";
 import lyricChangeReducer from "./../../src/reducers/lyricChangeReducer";
 import rootReducer from "./../../src/reducers/";
-import currentAttemptReducer from "./../../src/reducers/currentAttemptReducer";
+import currentSetReducer from "../../src/reducers/currentSetReducer";
 import { createStore } from "redux";
 import * as actions from "./../../src/actions";
 
-describe("Karaoke App", () => {
+describe("Rocket Math", () => {
   const { initialState, types } = constants;
   const store = createStore(rootReducer, initialState);
 
-  describe("currentAttemptReducer", () => {
-    it("Should update answer", () => {      
-      expect(currentAttemptReducer(initialState.currentAttempt, actions.saveAnswer(0, 1)).equations[0].answer).toEqual(1);
-    });
+  describe("currentSetReducer", () => {
 
     it("Should accept and return state", () => {
-      expect(currentAttemptReducer(initialState.currentAttempt, {type: null})).toEqual(initialState.currentAttempt);
+      expect(currentSetReducer(initialState.currentSet, {type: null})).toEqual(initialState.currentSet);
+    });
+
+    it("Should update answer", () => {      
+      expect(currentSetReducer(initialState.currentSet, actions.saveAnswer(0, 1)).facts[0].answer).toEqual(1);
     });
 
   });

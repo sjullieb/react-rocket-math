@@ -1,9 +1,9 @@
 import * as types from "./../constants/ActionTypes";
 import v4 from "uuid/v4";
 
-export const saveAnswer = (equationId, answer) => ({
+export const saveAnswer = (factId, answer) => ({
   type: types.SAVE_ANSWER,
-  equationId,
+  factId,
   answer
 });
 

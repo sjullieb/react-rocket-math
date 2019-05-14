@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import songChangeReducer from './songChangeReducer';
 import lyricChangeReducer from './lyricChangeReducer';
-import currentAttemptReducer from './currentAttemptReducer';
+import currentSetReducer from './currentSetReducer';
 
 const rootReducer = combineReducers({
   currentSongId: songChangeReducer,
   songsById: lyricChangeReducer,
-  currentAttempt: currentAttemptReducer
+  currentSet: currentSetReducer
 });
 
 export default rootReducer;

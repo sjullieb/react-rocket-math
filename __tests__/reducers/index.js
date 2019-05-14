@@ -11,8 +11,13 @@ describe("Karaoke App", () => {
   const store = createStore(rootReducer, initialState);
 
   describe("currentAttemptReducer", () => {
+    it("Should update answer", () => {      
+      expect(currentAttemptReducer(initialState.currentAttempt, actions.saveAnswer(0, 1)).equations[0].answer).toEqual(1);
+    });
+
     it("Should accept and return state", () => {
       expect(currentAttemptReducer(initialState.currentAttempt, {type: null})).toEqual(initialState.currentAttempt);
     });
+
   });
 });

@@ -2,10 +2,14 @@ import constants from "./../constants";
 const { initialState, types } = constants;
 
 const currentAttemptReducer = (state = initialState.currentAttempt, action) => {
-  
+  let newEquationsArray;
+  let newCurrentAttemptSlice;
   switch (action.type) {
     case types.SAVE_ANSWER:
-      return 1;
+      newEquationsArray = state.equations.slice();
+      newEquationsArray[action.equationId].answer = action.answer;
+      newCurrentAttemptSlice = Object.assign({}, state, {equations: newEquationsArray});   
+      return newCurrentAttemptSlice;
     //   const newArrayPosition = state[action.currentSongId].arrayPosition + 1;
     //   newSongsByIdEntry = Object.assign({}, state[action.currentSongId], {
     //     arrayPosition: newArrayPosition
@@ -14,6 +18,7 @@ const currentAttemptReducer = (state = initialState.currentAttempt, action) => {
     //     [action.currentSongId]: newSongsByIdEntry
     //   });
     //   return newSongsByIdStateSlice;
+
     // case types.RESTART_SONG:
     //   newSongsByIdEntry = Object.assign({}, state[action.currentSongId], {
     //     arrayPosition: 0

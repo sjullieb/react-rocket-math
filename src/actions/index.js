@@ -1,6 +1,12 @@
 import * as types from "./../constants/ActionTypes";
 import v4 from "uuid/v4";
 
+export const saveAnswer = (equationId, answer) => {
+  type: types.SAVE_ANSWER,
+  equationId,
+  answer
+}
+
 export const nextLyric = currentSongId => ({
   type: types.NEXT_LYRIC,
   currentSongId

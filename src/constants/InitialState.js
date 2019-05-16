@@ -14,7 +14,7 @@ export const initialState = {
     currentLevel: "E",
     lastSetId: null
   },
-
+  currentFactIndex: 0,
   currentSet: {
     timeStamp: null,
     operator: "+",

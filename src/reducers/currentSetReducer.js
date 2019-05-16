@@ -5,10 +5,14 @@ const currentSetReducer = (state = initialState.currentSet, action) => {
   let newFactsArray;
   let newCurrentSetSlice;
   switch (action.type) {
+    case types.INITIALIZE_STATE:
+      return initialState.currentSet;
     case types.SAVE_ANSWER:
       newFactsArray = state.facts.slice();
       newFactsArray[action.factId].answer = action.answer;
       newCurrentSetSlice = Object.assign({}, state, {facts: newFactsArray});   
+      console.log(newCurrentSetSlice);
+      
       return newCurrentSetSlice;
     //   const newArrayPosition = state[action.currentSongId].arrayPosition + 1;
     //   newSongsByIdEntry = Object.assign({}, state[action.currentSongId], {

@@ -1,6 +1,10 @@
 import * as types from "./../constants/ActionTypes";
 import v4 from "uuid/v4";
 
+export const initializeState = () => ({
+  type: types.INITIALIZE_STATE
+});
+
 export const saveAnswer = (factId, answer) => ({
   type: types.SAVE_ANSWER,
   factId,

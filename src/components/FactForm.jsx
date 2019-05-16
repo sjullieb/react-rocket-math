@@ -1,13 +1,15 @@
 import React from 'react';
 //import constants from "./../constants";
-import { saveAnswer} from "./../actions";
+import { saveAnswer } from "./../actions";
 import { connect } from 'react-redux';
 import { v4 } from 'uuid';
 
-function FactForm({ dispatch, fact }){
+function FactForm({ dispatch, fact, id }){
     let _answer = null;
     //const { initialState, types } = constants;
-    const { id, term1, term2, operator } = fact;
+    console.log(fact);
+    
+    const { term1, term2, operator } = fact;
 
     function handleAnswerSubmission(event){
         event.preventDefault();
@@ -17,12 +19,12 @@ function FactForm({ dispatch, fact }){
 
     return(
         <div>
-            <form onSubmit={handleAnswerSubmission()}>
+            <form onSubmit={handleAnswerSubmission}>
                 <label>{term1}</label><br />
                 <label>{operator}</label><br />
                 <label>{term2}</label><br />
                 <hr />
-                <input type="number" ref={(input) => {_answer.input;}}/>
+                <input type="number" ref={(input) => {_answer = input;}}/>
                 <button type="submit">Next</button>
             </form>
         </div>

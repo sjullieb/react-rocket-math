@@ -11,6 +11,10 @@ export const saveAnswer = (factId, answer) => ({
   answer
 });
 
+export const nextFactIndex = () => ({
+  type: types.NEXT_FACT_INDEX
+})
+
 export const nextLyric = currentSongId => ({
   type: types.NEXT_LYRIC,
   currentSongId

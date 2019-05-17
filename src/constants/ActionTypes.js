@@ -1,3 +1,4 @@
 export const NEXT_EQUATION = "NEXT_EQUATION";
 export const SAVE_ANSWER = "SAVE_ANSWER";
 export const INITIALIZE_STATE = "INITIALIZE_STATE";
+export const NEXT_FACT_INDEX = "NEXT_FACT_INDEX";

@@ -1,19 +1,14 @@
 import React from 'react';
-//import constants from "./../constants";
-import { saveAnswer } from "./../actions";
-import { connect } from 'react-redux';
-import { v4 } from 'uuid';
 
-function FactForm({ dispatch, fact, id }){
+function FactForm({ fact }){
     let _answer = null;
-    //const { initialState, types } = constants;
     console.log(fact);
     
     const { term1, term2, operator } = fact;
 
     function handleAnswerSubmission(event){
         event.preventDefault();
-        dispatch(saveAnswer(id, _answer.value));
+        props.onAnswerSubmission(_answer.value);
         _answer.value = '';
     };
 
@@ -31,4 +26,4 @@ function FactForm({ dispatch, fact, id }){
     );
 };
 
-export default connect()(FactForm);
+export default FactForm;

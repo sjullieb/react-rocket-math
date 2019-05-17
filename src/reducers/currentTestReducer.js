@@ -1,19 +1,24 @@
 import constants from "../constants";
 const { initialState, types } = constants;
 
-const currentSetReducer = (state = initialState.currentSet, action) => {
+const currentTestReducer = (state = initialState.currentTest, action) => {
   let newFactsArray;
-  let newCurrentSetSlice;
+  let newCurrentTestSlice;
   switch (action.type) {
     case types.INITIALIZE_STATE:
-      return initialState.currentSet;
+      return state;
+
+    case types.NEXT_FACT_INDEX:
+      state.factIndex++;
+      return state;
+
     case types.SAVE_ANSWER:
       newFactsArray = state.facts.slice();
-      newFactsArray[action.factId].answer = action.answer;
-      newCurrentSetSlice = Object.assign({}, state, {facts: newFactsArray});   
-      console.log(newCurrentSetSlice);
+      newFactsArray[state.factIndex].answer = action.answer;
+      newCurrentTestSlice = Object.assign({}, state, {facts: newFactsArray});         
+      return newCurrentTestSlice;
+
       
-      return newCurrentSetSlice;
     //   const newArrayPosition = state[action.currentSongId].arrayPosition + 1;
     //   newSongsByIdEntry = Object.assign({}, state[action.currentSongId], {
     //     arrayPosition: newArrayPosition
@@ -60,4 +65,4 @@ const currentSetReducer = (state = initialState.currentSet, action) => {
   }
 };
 
-export default currentSetReducer;
+export default currentTestReducer;

@@ -9,11 +9,27 @@ const songList = {
 
 export const initialState = {
   user: {
+    userId: 1,
     name: "Anya",
-    currentOperation: "Addition",
-    currentLevel: "E",
-    lastSetId: null
+    username: "anyat",
+    operator: "+",
+    level: "E"
   },
+  currentTest: {
+    factIndex: 0,
+    level: 'F',
+    operator: '+',
+    timeLeft: null,
+    completed: 'true',
+    passed: 'true',
+    timestamp: null,
+    facts: [
+      { term1: 7, term2: 2, result: 9, answer: 10 },
+      { term1: 5, term2: 9, result: 14, answer: null }
+    ]
+  },
+
+  
   currentFactIndex: 0,
   currentSet: {
     timeStamp: null,

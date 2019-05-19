@@ -30,29 +30,17 @@ class TestBody extends Component {
 
   handleAnswerSubmission(answer){
     const { dispatch, factIndex, facts } = this.props;
-    console.log('before');
-    console.log(facts[factIndex].answer);
-    console.log(factIndex);    
-
-    
-    dispatch(saveAnswer(factIndex, answer));
-    console.log('after');
-    console.log(facts[factIndex].answer);
+    dispatch(saveAnswer(factIndex, parseInt(answer)));
 
     if(factIndex == facts.length - 1){
       dispatch(completeTest());
     } else {
       dispatch(nextFactIndex());
     }
-
-    console.log(factIndex);
-    
-
   };
 
   render(){
     const { factIndex, facts } = this.props;
-    console.log(this.props);
     
     return(
       <div>

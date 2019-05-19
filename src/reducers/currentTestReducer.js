@@ -34,18 +34,11 @@ const currentTestReducer = (state = initialState.currentTest, action) => {
 
     case types.UPDATE_PASS:
       let pass = (state.correctAnswers == state.facts.length);
-
-      console.log(state.correctAnswers, state.facts.length);     
-      console.log(state.correctAnswers == state.facts.length);
-      
-      newCurrentTestSlice = Object.assign({}, state, {pass: pass.toString()});   
-      console.log(newCurrentTestSlice);        
+      newCurrentTestSlice = Object.assign({}, state, {pass: pass.toString()});     
       return newCurrentTestSlice;
 
     case types.UPDATE_COMPLETE:      
       newCurrentTestSlice = Object.assign({}, state, {complete: "true"});           
-      console.log(newCurrentTestSlice);
-      
       return newCurrentTestSlice;
       
     case types.COMPLETE_TEST:

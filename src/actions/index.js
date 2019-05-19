@@ -33,6 +33,12 @@ export const completeTest = () => ({
   type: types.COMPLETE_TEST
 })
 
+export const saveCurrentTest = () => ({
+  type: types.SAVE_CURRENT_TEST
+})
+
+//------------------------
+
 export const nextLyric = currentSongId => ({
   type: types.NEXT_LYRIC,
   currentSongId

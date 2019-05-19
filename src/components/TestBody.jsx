@@ -3,7 +3,7 @@ import TestInfo from './TestInfo';
 import FactForm from './FactForm';
 import { connect } from 'react-redux';
 import constants from "./../constants";
-import { saveAnswer, initializeState, completeTest, nextFactIndex } from "./../actions";
+import { saveAnswer, initializeState, completeTest, nextFactIndex, checkAnswer, updatePass, updateComplete } from "./../actions";
 
 class TestBody extends Component {
   
@@ -31,9 +31,19 @@ class TestBody extends Component {
   handleAnswerSubmission(answer){
     const { dispatch, factIndex, facts } = this.props;
     dispatch(saveAnswer(factIndex, parseInt(answer)));
-
+    dispatch(checkAnswer(factIndex));
+    console.log("check next fact/ or complete");
     if(factIndex == facts.length - 1){
+      console.log("last fact");
+      
+
+      console.log(this.props.currentTest);
+    
+      dispatch(updatePass());
+      dispatch(updateComplete());      
       dispatch(completeTest());
+      console.log("pass", this.props.currentTest.pass);      
+      console.log("complete", this.props.currentTest.complete);            
     } else {
       dispatch(nextFactIndex());
     }
@@ -53,6 +63,7 @@ class TestBody extends Component {
 
 const mapStateToProps = state => {
   return {
+    currentTest: state.currentTest,
     factIndex: state.currentTest.factIndex,
     facts: state.currentTest.facts
   };

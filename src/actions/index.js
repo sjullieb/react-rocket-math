@@ -20,6 +20,11 @@ export const updatePass = () => ({
   type: types.UPDATE_PASS
 });
 
+export const updateComplete = () => ({
+  type: types.UPDATE_COMPLETE
+});
+
+
 export const nextFactIndex = () => ({
   type: types.NEXT_FACT_INDEX
 })

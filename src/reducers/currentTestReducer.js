@@ -21,15 +21,30 @@ const currentTestReducer = (state = initialState.currentTest, action) => {
 
     case types.CHECK_ANSWER:
       if(state.facts[action.factId].answer == state.facts[action.factId].result){ 
+        
+        
         let newCorrectAnswers = state.correctAnswers + 1;
-        newCurrentTestSlice = Object.assign({}, state, {correctAnswers: newCorrectAnswers});           
+        newCurrentTestSlice = Object.assign({}, state, {correctAnswers: newCorrectAnswers});         
+        console.log("correctAnswer");
+        console.log(newCurrentTestSlice);                  
         return newCurrentTestSlice;
       } else {
+        console.log("InCorrectAnswer");        
         return state;
       }
 
     case types.UPDATE_PASS:
-      return "";
+      let pass = (state.correctAnswers == state.facts.length);
+
+      console.log(state.correctAnswers, state.facts.length);     
+      console.log(state.correctAnswers == state.facts.length);
+      
+      newCurrentTestSlice = Object.assign({}, state, {pass: pass.toString()});           
+      return newCurrentTestSlice;
+
+    case types.UPDATE_COMPLETE:      
+      newCurrentTestSlice = Object.assign({}, state, {complete: "true"});           
+      return newCurrentTestSlice;
       
     case types.COMPLETE_TEST:
     // 1. save object to tests

@@ -42,16 +42,25 @@ describe("Rocket Math", () => {
     });
 
     it("Should update pass to True when correctAnswers are equal to the length of facts' array", () => {
-      const { facts } = initialState.currentTest;
-      let answerResult = facts[0].result;      
-      currentTestReducer(initialState.currentTest, actions.saveAnswer(0, answerResult)); 
-      currentTestReducer(initialState.currentTest, actions.checkAnswer(0));
+      store.dispatch(actions.initializeState());
+      console.log(getState());
+      
 
-      answerResult = facts[1].result;      
-      currentTestReducer(initialState.currentTest, actions.saveAnswer(1, answerResult)); 
-      currentTestReducer(initialState.currentTest, actions.checkAnswer(1));
+    //   currentTestReducer({}, actions.initializeState());
+    //   const { facts } = store.getState().currentTest;
+    //   let answerResult = facts[0].result;     
+    //   //console.log(store.getState().currentTest);
+      
+    //   currentTestReducer(store.getState().currentTest, actions.saveAnswer(0, answerResult)); 
+    //   currentTestReducer(store.getState().currentTest, actions.checkAnswer(0));
 
-      expect(currentTestReducer(initialState.currentTest, actions.updatePass()).pass).toEqual("true");
+    //   answerResult = facts[1].result;      
+    //   currentTestReducer(store.getState().currentTest, actions.saveAnswer(1, answerResult)); 
+    //   currentTestReducer(store.getState().currentTest, actions.checkAnswer(1));
+
+    // //  console.log(store.getState().currentTest);
+      
+      expect(currentTestReducer(store.getState().currentTest, actions.updatePass()).pass).toEqual(true);
     });
   });
 });

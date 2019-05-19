@@ -1,14 +1,16 @@
 import React from 'react';
 
-function FactForm({ fact }){
+function FactForm({ fact, onAnswerSubmission}){
     let _answer = null;
-    console.log(fact);
+    //console.log(fact);
+    //console.log(onAnswerSubmission);
+    
     
     const { term1, term2, operator } = fact;
 
     function handleAnswerSubmission(event){
         event.preventDefault();
-        props.onAnswerSubmission(_answer.value);
+        onAnswerSubmission(_answer.value);
         _answer.value = '';
     };
 

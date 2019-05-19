@@ -9,8 +9,11 @@ const currentTestReducer = (state = initialState.currentTest, action) => {
       return state;
 
     case types.NEXT_FACT_INDEX:
-      state.factIndex++;
-      return state;
+      let nextFactIndex = state.factIndex + 1;
+      newCurrentTestSlice = Object.assign({}, state, {factIndex: nextFactIndex});    
+      console.log(nextFactIndex);
+           
+      return newCurrentTestSlice;
 
     case types.SAVE_ANSWER:
       newFactsArray = state.facts.slice();

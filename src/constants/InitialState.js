@@ -13,7 +13,8 @@ export const initialState = {
     name: "Anya",
     username: "anyat",
     operator: "+",
-    level: "E"
+    level: "E",
+    tests: [1, 2]
   },
   currentTest: {
     factIndex: 0,
@@ -30,7 +31,35 @@ export const initialState = {
     ]
   },
 
-  
+  testsById: {
+    1: {
+      id: 1,
+      userId: 1,
+      operator: "+",
+      level: "D",
+      correctAnswers: 0,
+      pass: "false",
+      timestamp: null,
+      facts: [
+        { term1: 2, term2: 3, result: 5, answer: 6 },
+        { term1: 5, term2: 6, result: 11, answer: null }
+      ]      
+    },
+    2: {
+      id: 2,
+      userId: 1,
+      operator: "+",
+      level: "D",
+      correctAnswers: 2,
+      pass: "true",
+      timestamp: null,
+      facts: [
+        { term1: 2, term2: 3, result: 5, answer: 5 },
+        { term1: 5, term2: 6, result: 11, answer: 11 }
+      ]      
+    }
+  },
+
   currentFactIndex: 0,
   currentSet: {
     timeStamp: null,

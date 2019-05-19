@@ -11,8 +11,6 @@ const currentTestReducer = (state = initialState.currentTest, action) => {
     case types.NEXT_FACT_INDEX:
       let nextFactIndex = state.factIndex + 1;
       newCurrentTestSlice = Object.assign({}, state, {factIndex: nextFactIndex});    
-      console.log(nextFactIndex);
-           
       return newCurrentTestSlice;
 
     case types.SAVE_ANSWER:
@@ -21,7 +19,16 @@ const currentTestReducer = (state = initialState.currentTest, action) => {
       newCurrentTestSlice = Object.assign({}, state, {facts: newFactsArray});         
       return newCurrentTestSlice;
 
-      
+    case types.CHECK_ANSWER:
+      if(state.facts[state.factIndex].answer == state.facts[state.factIndex].result){ 
+        let newCorrectAnswers = state.correctAnswers + 1;
+        newCurrentTestSlice = Object.assign({}, state, {correctAnswers: newCorrectAnswers});           
+        return newCurrentTestSlice;
+      } else {
+        return state;
+      }
+
+
     //   const newArrayPosition = state[action.currentSongId].arrayPosition + 1;
     //   newSongsByIdEntry = Object.assign({}, state[action.currentSongId], {
     //     arrayPosition: newArrayPosition

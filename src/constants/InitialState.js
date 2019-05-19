@@ -20,7 +20,8 @@ export const initialState = {
     level: 'F',
     operator: '+',
     timeLeft: null,
-    completed: 'true',
+    correctAnswers: 0,
+    complete: 'true',
     passed: 'true',
     timestamp: null,
     facts: [

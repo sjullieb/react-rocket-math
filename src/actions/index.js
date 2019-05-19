@@ -11,6 +11,10 @@ export const saveAnswer = (factId, answer) => ({
   answer
 });
 
+export const checkAnswer = () => ({
+  type: types.CHECK_ANSWER
+});
+
 export const nextFactIndex = () => ({
   type: types.NEXT_FACT_INDEX
 })

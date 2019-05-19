@@ -15,12 +15,12 @@ const currentTestReducer = (state = initialState.currentTest, action) => {
 
     case types.SAVE_ANSWER:
       newFactsArray = state.facts.slice();
-      newFactsArray[state.factIndex].answer = action.answer;
+      newFactsArray[action.factId].answer = action.answer;
       newCurrentTestSlice = Object.assign({}, state, {facts: newFactsArray});         
       return newCurrentTestSlice;
 
     case types.CHECK_ANSWER:
-      if(state.facts[state.factIndex].answer == state.facts[state.factIndex].result){ 
+      if(state.facts[action.factId].answer == state.facts[action.factId].result){ 
         let newCorrectAnswers = state.correctAnswers + 1;
         newCurrentTestSlice = Object.assign({}, state, {correctAnswers: newCorrectAnswers});           
         return newCurrentTestSlice;
@@ -28,6 +28,18 @@ const currentTestReducer = (state = initialState.currentTest, action) => {
         return state;
       }
 
+    case types.UPDATE_PASS:
+      return "";
+      
+    case types.COMPLETE_TEST:
+    // 1. save object to tests
+    // 2. update completed property
+    // 3. reset timer
+    // 4. update pass poroperty
+
+    //case types.UPDATE_TIMER:
+
+    //case types.SET_TIMER:
 
     //   const newArrayPosition = state[action.currentSongId].arrayPosition + 1;
     //   newSongsByIdEntry = Object.assign({}, state[action.currentSongId], {

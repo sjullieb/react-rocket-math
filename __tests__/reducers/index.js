@@ -26,23 +26,32 @@ describe("Rocket Math", () => {
     });
     
     it("Should increase the number of correct answers if answer is correct", () => {      
-      const { factIndex, facts } = initialState.currentTest;
-      let correctResult = facts[factIndex].result;
-      let answerResult = facts[factIndex].term1 + facts[factIndex].term2;      
-      currentTestReducer(initialState.currentTest, actions.saveAnswer(factIndex, answerResult)); //saving correct answer
+      const { facts } = initialState.currentTest;
+      let correctResult = facts[0].result;    
+      currentTestReducer(initialState.currentTest, actions.saveAnswer(0, correctResult)); //saving correct answer
       let newCorrectAnswers = initialState.currentTest.correctAnswers + 1;    
-      expect(currentTestReducer(initialState.currentTest, actions.checkAnswer()).correctAnswers).toEqual(newCorrectAnswers);
+      expect(currentTestReducer(initialState.currentTest, actions.checkAnswer(0)).correctAnswers).toEqual(newCorrectAnswers);
     });
     
     it("Should NOT increase the number of correct answers if answer is wrong", () => {      
-      const { factIndex, facts } = initialState.currentTest;
-      let correctResult = facts[factIndex].result;
-      let answerResult = facts[factIndex].term1 + facts[factIndex].term2;      
-      currentTestReducer(initialState.currentTest, actions.saveAnswer(factIndex, answerResult + 10)); //saving incorrect answer
+      const { facts } = initialState.currentTest;
+      let correctResult = facts[0].result;
+      currentTestReducer(initialState.currentTest, actions.saveAnswer(0, correctResult + 10)); //saving incorrect answer
       let newCorrectAnswers = initialState.currentTest.correctAnswers;    
-      expect(currentTestReducer(initialState.currentTest, actions.checkAnswer()).correctAnswers).toEqual(newCorrectAnswers);
+      expect(currentTestReducer(initialState.currentTest, actions.checkAnswer(0)).correctAnswers).toEqual(newCorrectAnswers);
     });
 
-    
+    it("Should update pass to True when correctAnswers are equal to the length of facts' array", () => {
+      const { facts } = initialState.currentTest;
+      let answerResult = facts[0].result;      
+      currentTestReducer(initialState.currentTest, actions.saveAnswer(0, answerResult)); 
+      currentTestReducer(initialState.currentTest, actions.checkAnswer(0));
+
+      answerResult = facts[1].result;      
+      currentTestReducer(initialState.currentTest, actions.saveAnswer(1, answerResult)); 
+      currentTestReducer(initialState.currentTest, actions.checkAnswer(1));
+
+      expect(currentTestReducer(initialState.currentTest, actions.updatePass()).pass).toEqual("true");
+    });
   });
 });

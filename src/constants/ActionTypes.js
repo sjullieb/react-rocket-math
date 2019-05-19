@@ -3,3 +3,7 @@ export const SAVE_ANSWER = "SAVE_ANSWER";
 export const INITIALIZE_STATE = "INITIALIZE_STATE";
 export const NEXT_FACT_INDEX = "NEXT_FACT_INDEX";
 export const CHECK_ANSWER = "CHECK_ANSWER";
+export const COMPLETE_TEST = "COMPLETE_TEST";
+export const UPDATE_PASS = "UPDATE_PASS";
+// export const UPDATE_TIME_LEFT = "UPDATE_TIMER";
+// export const SET_TIMER = "SET_TIMER";

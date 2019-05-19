@@ -11,12 +11,21 @@ export const saveAnswer = (factId, answer) => ({
   answer
 });
 
-export const checkAnswer = () => ({
-  type: types.CHECK_ANSWER
+export const checkAnswer = (factId) => ({
+  type: types.CHECK_ANSWER,
+  factId
+});
+
+export const updatePass = () => ({
+  type: types.UPDATE_PASS
 });
 
 export const nextFactIndex = () => ({
   type: types.NEXT_FACT_INDEX
+})
+
+export const completeTest = () => ({
+  type: types.COMPLETE_TEST
 })
 
 export const nextLyric = currentSongId => ({

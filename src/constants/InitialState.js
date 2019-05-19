@@ -21,11 +21,11 @@ export const initialState = {
     operator: '+',
     timeLeft: null,
     correctAnswers: 0,
-    complete: 'true',
-    passed: 'true',
+    complete: "false",
+    pass: "false",
     timestamp: null,
     facts: [
-      { term1: 7, term2: 2, result: 9, answer: 10 },
+      { term1: 7, term2: 2, result: 9, answer: null },
       { term1: 5, term2: 9, result: 14, answer: null }
     ]
   },

@@ -18,13 +18,14 @@ const userReducer = (state = initialState.user, action) => {
       console.log(newState);
       
       return newState;
-    default:
-      return state;
 
     case types.UPDATE_USER_LEVEL:
       let newLevelASCI = state.level.charCodeAt(0) + 1;
       newState = Object.assign({}, state, {level: String.fromCharCode(newLevelASCI)});
       return newState;
+
+    default:
+        return state;
   }
 };
 

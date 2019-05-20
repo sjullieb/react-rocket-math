@@ -87,7 +87,7 @@ class TestBody extends Component {
     
     return(
       <div>
-        <TestInfo />
+        <TestInfo/>
         <FactForm fact={facts[factIndex]}  onAnswerSubmission={this.handleAnswerSubmission}/>
       </div>
     );

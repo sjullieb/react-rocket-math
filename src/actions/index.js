@@ -53,6 +53,15 @@ export const saveUserTest = (testId) => ({
 export const updateUserLevel = () => ({
   type: types.UPDATE_USER_LEVEL
 })
+
+export const updateTimer = (timeLeft) => ({
+  type: types.UPDATE_TIMER,
+  timeLeft: timeLeft
+})
+
+export const stopTimer = () => ({
+  type: types.STOP_TIMER
+})
 //------------------------
 
 export const nextLyric = currentSongId => ({

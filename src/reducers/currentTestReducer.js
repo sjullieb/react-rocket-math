@@ -42,6 +42,7 @@ const currentTestReducer = (state = initialState.currentTest, action) => {
       return newCurrentTestSlice;
       
     case types.COMPLETE_TEST:
+      return state;
     // 1. save object to tests
     // 2. update completed property
     // 3. reset timer

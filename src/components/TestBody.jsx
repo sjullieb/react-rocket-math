@@ -50,7 +50,10 @@ class TestBody extends Component {
       console.log(this.props);
       
   //    const { factIndex, facts, userId, level, operator, correctAnswers, pass } = this.props.currentTest;
-      dispatch(saveCurrentTest(v4(), 0, level, operator, this.props.correctAnswers, this.props.pass, this.props.timestamp, facts))    
+  //saveCurrentTest = (testId, userId, level, operator, correctAnswers, pass, timestamp, facts)  
+  //console.log('saving', this.props.currentTest.correctAnswers, this.props.currentTest.pass,);
+  
+      dispatch(saveCurrentTest(v4(), 0, level, operator, this.props.currentTest.correctAnswers, this.props.currentTest.pass, this.props.currentTest.timestamp, facts))    
     } else {
       dispatch(nextFactIndex());
     }

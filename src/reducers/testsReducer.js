@@ -9,6 +9,8 @@ const testSaveReducer = (state = initialState.testsById, action) => {
     // 1. save new object to tests
     // 2. add testId to user's arrya of tests
     // 3. currentTest = null
+    console.log(action);
+    
       const { level, operator, correctAnswers, pass, timestamp, facts, testId, userId } = action;
       const newFactsArray = [...facts];
       let newTest = {
@@ -22,7 +24,9 @@ const testSaveReducer = (state = initialState.testsById, action) => {
         facts: newFactsArray
       };
 
-      newTestsSlice = Object.assign({}, state.testsById, {[testId]: newTest});
+      console.log(state);
+      
+      newTestsSlice = Object.assign({}, state, {[testId]: newTest});
       console.log("Saving test");      
       console.log(newTestsSlice);
       

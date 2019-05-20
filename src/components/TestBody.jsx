@@ -82,8 +82,10 @@ class TestBody extends Component {
   render(){
     const { factIndex, facts, currentTest, complete } = this.props;
     let showTest;
+    console.log("factNo = ", factIndex + 1, "totalNo = ", facts.length);
+    
     if(currentTest.timeLeft > 0){
-      showTest = <FactForm fact={facts[factIndex]}  onAnswerSubmission={this.handleAnswerSubmission}/>
+      showTest = <FactForm fact={facts[factIndex]}  onAnswerSubmission={this.handleAnswerSubmission} factNo={factIndex+1} totalNo={facts.length}/>
     } else {
       showTest = <p>Test is over!</p>
     }

@@ -1,12 +1,12 @@
 import React from 'react';
 
-function FactForm({ fact, onAnswerSubmission }){
+function FactForm({ fact, onAnswerSubmission, factNo, totalNo }){
     let _answer = null;
     //console.log(fact);
     //console.log(onAnswerSubmission);
     
     
-    const { term1, term2, operator } = fact;
+    const { term1, term2, operator} = fact;
 
     function handleAnswerSubmission(event){
         event.preventDefault();
@@ -17,6 +17,7 @@ function FactForm({ fact, onAnswerSubmission }){
     return(
         <div>
             <form onSubmit={handleAnswerSubmission}>
+                <label>{factNo} / {totalNo}</label><br />
                 <label>{term1}</label><br />
                 <label>{operator}</label><br />
                 <label>{term2}</label><br />

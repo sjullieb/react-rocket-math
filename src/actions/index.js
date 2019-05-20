@@ -45,6 +45,11 @@ export const saveCurrentTest = (testId, userId, level, operator, correctAnswers,
   facts: facts
 })
 
+export const saveUserTest = (testId) => ({
+  type: types.SAVE_USER_TEST,
+  testId: testId
+})
+
 //------------------------
 
 export const nextLyric = currentSongId => ({

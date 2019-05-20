@@ -4,7 +4,7 @@ import FactForm from './FactForm';
 import { connect } from 'react-redux';
 import constants from "./../constants";
 import { v4 } from 'uuid';
-import { saveAnswer, initializeState, completeTest, nextFactIndex, checkAnswer, updatePass, updateComplete, saveCurrentTest } from "./../actions";
+import { saveAnswer, initializeState, completeTest, nextFactIndex, checkAnswer, updatePass, updateComplete, saveCurrentTest, saveUserTest } from "./../actions";
 
 class TestBody extends Component {
   
@@ -33,29 +33,46 @@ class TestBody extends Component {
     const { dispatch } = this.props;
     const { factIndex, facts, userId, level, operator, correctAnswers, pass } = this.props.currentTest;
     dispatch(saveAnswer(factIndex, parseInt(answer)));
+    console.log(factIndex);
+    
     dispatch(checkAnswer(factIndex));
+    console.log(this.props.currentTest.correctAnswers)
     console.log("check next fact/ or complete");
     if(factIndex == facts.length - 1){
-      console.log("last fact");
-      
-
+      console.log("last fact, currentTest");
       console.log(this.props.currentTest);
     
       dispatch(updatePass());
-      dispatch(updateComplete());      
+      console.log('update Pass');
+      console.log(this.props.currentTest.pass);
+
+      dispatch(updateComplete()); 
+      console.log('update Complete');     
+      console.log(this.props.currentTest.complete);
+
       dispatch(completeTest());
-      console.log("pass", this.props.currentTest.pass);      
-      console.log("complete", this.props.currentTest.complete);   
       // store.getState();     
-      console.log(this.props);
+      console.log(this.props.all);
       
   //    const { factIndex, facts, userId, level, operator, correctAnswers, pass } = this.props.currentTest;
   //saveCurrentTest = (testId, userId, level, operator, correctAnswers, pass, timestamp, facts)  
   //console.log('saving', this.props.currentTest.correctAnswers, this.props.currentTest.pass,);
-  
-      dispatch(saveCurrentTest(v4(), 0, level, operator, this.props.currentTest.correctAnswers, this.props.currentTest.pass, this.props.currentTest.timestamp, facts))    
+      const testId = v4();
+      const userId = 0;
+      console.log();
+      
+      dispatch(saveCurrentTest(testId, userId, level, operator, this.props.currentTest.correctAnswers, this.props.currentTest.pass, this.props.currentTest.timestamp, facts))    
+      console.log('save current test results');
+      console.log(this.props.all.tests);
+
+      // saving to the user
+      console.log('SAVING TEST TO USER');
+      
+      dispatch(saveUserTest(testId));
     } else {
       dispatch(nextFactIndex());
+      console.log('change to next FactIndex');
+      console.log(factIndex);
     }
   };
 
@@ -76,6 +93,7 @@ const mapStateToProps = state => {
     currentTest: state.currentTest,
     factIndex: state.currentTest.factIndex,
     facts: state.currentTest.facts,
+   // userId: state.user.id,
     all: state
   };
 };

@@ -7,5 +7,6 @@ export const COMPLETE_TEST = "COMPLETE_TEST";
 export const UPDATE_PASS = "UPDATE_PASS";
 export const UPDATE_COMPLETE = "UPDATE_COMPLETE";
 export const SAVE_CURRENT_TEST = "SAVE_CURRENT_TEST";
+export const SAVE_USER_TEST = "SAVE_USER_TEST";
 // export const UPDATE_TIME_LEFT = "UPDATE_TIMER";
 // export const SET_TIMER = "SET_TIMER";

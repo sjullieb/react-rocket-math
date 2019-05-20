@@ -40,7 +40,15 @@ const currentTestReducer = (state = initialState.currentTest, action) => {
     case types.UPDATE_COMPLETE:      
       newCurrentTestSlice = Object.assign({}, state, {complete: "true"});           
       return newCurrentTestSlice;
-      
+
+    case types.UPDATE_TIMER:
+      newCurrentTestSlice = Object.assign({}, state, {timeLeft: action.timeLeft});
+      return newCurrentTestSlice;
+
+    case types.STOP_TIMER:
+        newCurrentTestSlice = Object.assign({}, state, {timeLeft: 0});
+        return newCurrentTestSlice;
+              
     case types.COMPLETE_TEST:
       return state;
     // 1. save object to tests

@@ -1,10 +1,10 @@
 import React from 'react';
 
-function TestInfo()
+function TestInfo(props)
 {
   return(
     <div>
-      <p>Timer</p>
+      <p>Time left: {props.timeLeft/1000}</p>
     </div>
   );
 }

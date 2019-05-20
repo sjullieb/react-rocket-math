@@ -4,7 +4,7 @@ import FactForm from './FactForm';
 import { connect } from 'react-redux';
 import constants from "./../constants";
 import { v4 } from 'uuid';
-import { saveAnswer, initializeState, completeTest, nextFactIndex, checkAnswer, updatePass, updateComplete, saveCurrentTest, saveUserTest, updateUserLevel } from "./../actions";
+import { saveAnswer, initializeState, completeTest, nextFactIndex, checkAnswer, updatePass, updateComplete, saveCurrentTest, saveUserTest, updateUserLevel, updateTimer, stopTimer } from "./../actions";
 
 class TestBody extends Component {
   
@@ -13,20 +13,35 @@ class TestBody extends Component {
     this.handleAnswerSubmission = this.handleAnswerSubmission.bind(this);
   }
 
-  componentDidMount() {
-    this.props.dispatch(initializeState());
+  startTimer(){
+    this.props.dispatch(updateTimer(10000));
     this.testTimer = setInterval(() =>
       this.updateTestTime(),
     1000
     );
   }
 
-  componentWillUnmount(){
+  clearTimer(){
+    this.props.dispatch(stopTimer());
     clearInterval(this.testTimer);
   }
 
+  componentDidMount() {
+    this.props.dispatch(initializeState());
+    this.startTimer();
+  }
+
+  componentWillUnmount(){
+    clearTimer();
+  }
+
   updateTestTime(){
-    console.log('updateTimer');    
+    if(this.props.currentTest.timeLeft > 0){
+      this.props.dispatch(updateTimer(this.props.currentTest.timeLeft - 1000));
+      console.log('updateTimer');
+    } else {
+      clearTimer();
+    }
   }
 
   handleAnswerSubmission(answer){
@@ -52,13 +67,11 @@ class TestBody extends Component {
 
       dispatch(completeTest());
       // store.getState();     
+      dispatch
       console.log(this.props.all);
       
-  //    const { factIndex, facts, userId, level, operator, correctAnswers, pass } = this.props.currentTest;
-  //saveCurrentTest = (testId, userId, level, operator, correctAnswers, pass, timestamp, facts)  
-  //console.log('saving', this.props.currentTest.correctAnswers, this.props.currentTest.pass,);
       const testId = v4();
-      const userId = 0;
+      //const userId = 0;
       console.log();
       
       dispatch(saveCurrentTest(testId, userId, level, operator, this.props.currentTest.correctAnswers, this.props.currentTest.pass, this.props.currentTest.timestamp, facts))    
@@ -75,6 +88,8 @@ class TestBody extends Component {
         dispatch(updateUserLevel());
       }
 
+      this.clearTimer();
+
     } else {
       dispatch(nextFactIndex());
       console.log('change to next FactIndex');
@@ -83,12 +98,18 @@ class TestBody extends Component {
   };
 
   render(){
-    const { factIndex, facts } = this.props;
+    const { factIndex, facts, currentTest } = this.props;
+    let showTest;
+    if(currentTest.timeLeft > 0){
+      showTest = <FactForm fact={facts[factIndex]}  onAnswerSubmission={this.handleAnswerSubmission}/>
+    } else {
+      showTest = <p>Test is over!</p>
+    }
     
     return(
       <div>
-        <TestInfo/>
-        <FactForm fact={facts[factIndex]}  onAnswerSubmission={this.handleAnswerSubmission}/>
+        <TestInfo timeLeft={currentTest.timeLeft}/>
+        {showTest}
       </div>
     );
   }
@@ -99,7 +120,7 @@ const mapStateToProps = state => {
     currentTest: state.currentTest,
     factIndex: state.currentTest.factIndex,
     facts: state.currentTest.facts,
-   // userId: state.user.id,
+    userId: state.user.id,
     all: state
   };
 };

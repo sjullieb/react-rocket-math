@@ -3,15 +3,25 @@ import SongDisplay from './SongDisplay';
 import SongList from './SongList';
 import TestBody from './TestBody';
 import Header from './Header';
+import UserInfo from "./UserInfo";
+import { connect } from 'react-redux';
 
-function App(){
+
+function App({ user }){
   return (
     <div>
       <Header />
       <br/>
-      <TestBody />
+      <UserInfo name={user.name} currentLevel={user.level}/>
+      <TestBody user={user}/>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(App);

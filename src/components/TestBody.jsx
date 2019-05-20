@@ -38,7 +38,6 @@ class TestBody extends Component {
   updateTestTime(){
     if(this.props.currentTest.timeLeft > 0){
       this.props.dispatch(updateTimer(this.props.currentTest.timeLeft - 1000));
-      console.log('updateTimer');
     } else {
       clearTimer();
     }
@@ -46,65 +45,49 @@ class TestBody extends Component {
 
   handleAnswerSubmission(answer){
     const { dispatch } = this.props;
-    const { factIndex, facts, userId, level, operator, correctAnswers, pass } = this.props.currentTest;
+    const { factIndex, facts, level, operator, correctAnswers, pass } = this.props.currentTest;
+    const { userId } = this.props.user.id;
     dispatch(saveAnswer(factIndex, parseInt(answer)));
-    console.log(factIndex);
     
     dispatch(checkAnswer(factIndex));
-    console.log(this.props.currentTest.correctAnswers)
-    console.log("check next fact/ or complete");
-    if(factIndex == facts.length - 1){
-      console.log("last fact, currentTest");
-      console.log(this.props.currentTest);
     
-      dispatch(updatePass());
-      console.log('update Pass');
-      console.log(this.props.currentTest.pass);
-
-      dispatch(updateComplete()); 
-      console.log('update Complete');     
-      console.log(this.props.currentTest.complete);
-
-      dispatch(completeTest());
-      // store.getState();     
-      dispatch
-      console.log(this.props.all);
-      
+    if(factIndex == facts.length - 1){  // test is completed
+      dispatch(updatePass()); // check if test is passed
+      dispatch(updateComplete()); // update test completness
+      dispatch(completeTest()); //??
+     
       const testId = v4();
-      //const userId = 0;
-      console.log();
       
+      // add test to the testById
       dispatch(saveCurrentTest(testId, userId, level, operator, this.props.currentTest.correctAnswers, this.props.currentTest.pass, this.props.currentTest.timestamp, facts))    
-      console.log('save current test results');
-      console.log(this.props.all.tests);
 
-      // saving to the user
-      console.log('Save test to user');
-      
+      // add testId to the user's tests arrya
       dispatch(saveUserTest(testId));
 
+      //update user's level if test is passed and it's not the last test
+      // TODO: uncomment!!!
       //if (this.props.currentTest.pass == "true" && level < "Z")
       {
         dispatch(updateUserLevel());
       }
 
+      // stop timer
       this.clearTimer();
 
-    } else {
+    } else { // increase factIndex
       dispatch(nextFactIndex());
-      console.log('change to next FactIndex');
-      console.log(factIndex);
     }
   };
 
   render(){
-    const { factIndex, facts, currentTest } = this.props;
+    const { factIndex, facts, currentTest, complete } = this.props;
     let showTest;
     if(currentTest.timeLeft > 0){
       showTest = <FactForm fact={facts[factIndex]}  onAnswerSubmission={this.handleAnswerSubmission}/>
     } else {
       showTest = <p>Test is over!</p>
     }
+
     
     return(
       <div>
@@ -120,7 +103,6 @@ const mapStateToProps = state => {
     currentTest: state.currentTest,
     factIndex: state.currentTest.factIndex,
     facts: state.currentTest.facts,
-    userId: state.user.id,
     all: state
   };
 };

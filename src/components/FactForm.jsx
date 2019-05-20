@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FactForm({ fact, onAnswerSubmission}){
+function FactForm({ fact, onAnswerSubmission }){
     let _answer = null;
     //console.log(fact);
     //console.log(onAnswerSubmission);

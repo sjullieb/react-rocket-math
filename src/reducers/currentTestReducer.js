@@ -24,11 +24,11 @@ const currentTestReducer = (state = initialState.currentTest, action) => {
                 
         let newCorrectAnswers = state.correctAnswers + 1;
         newCurrentTestSlice = Object.assign({}, state, {correctAnswers: newCorrectAnswers});         
-        console.log("correctAnswer");
+        console.log("Correct Answer");
         console.log(newCurrentTestSlice);                  
         return newCurrentTestSlice;
       } else {
-        console.log("InCorrectAnswer");        
+        console.log("Wrong Answer");        
         return state;
       }
 

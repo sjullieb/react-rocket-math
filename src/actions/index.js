@@ -50,6 +50,9 @@ export const saveUserTest = (testId) => ({
   testId: testId
 })
 
+export const updateUserLevel = () => ({
+  type: types.UPDATE_USER_LEVEL
+})
 //------------------------
 
 export const nextLyric = currentSongId => ({

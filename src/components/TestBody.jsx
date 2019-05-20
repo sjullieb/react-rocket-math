@@ -4,7 +4,7 @@ import FactForm from './FactForm';
 import { connect } from 'react-redux';
 import constants from "./../constants";
 import { v4 } from 'uuid';
-import { saveAnswer, initializeState, completeTest, nextFactIndex, checkAnswer, updatePass, updateComplete, saveCurrentTest, saveUserTest } from "./../actions";
+import { saveAnswer, initializeState, completeTest, nextFactIndex, checkAnswer, updatePass, updateComplete, saveCurrentTest, saveUserTest, updateUserLevel } from "./../actions";
 
 class TestBody extends Component {
   
@@ -66,9 +66,15 @@ class TestBody extends Component {
       console.log(this.props.all.tests);
 
       // saving to the user
-      console.log('SAVING TEST TO USER');
+      console.log('Save test to user');
       
       dispatch(saveUserTest(testId));
+
+      //if (this.props.currentTest.pass == "true" && level < "Z")
+      {
+        dispatch(updateUserLevel());
+      }
+
     } else {
       dispatch(nextFactIndex());
       console.log('change to next FactIndex');

@@ -39,7 +39,7 @@ class TestBody extends Component {
     if(this.props.currentTest.timeLeft > 0){
       this.props.dispatch(updateTimer(this.props.currentTest.timeLeft - 1000));
     } else {
-      clearTimer();
+      this.clearTimer();
     }
   }
 
@@ -82,7 +82,6 @@ class TestBody extends Component {
   render(){
     const { factIndex, facts, currentTest, complete } = this.props;
     let showTest;
-    console.log("factNo = ", factIndex + 1, "totalNo = ", facts.length);
     
     if(currentTest.timeLeft > 0){
       showTest = <FactForm fact={facts[factIndex]}  onAnswerSubmission={this.handleAnswerSubmission} factNo={factIndex+1} totalNo={facts.length}/>
@@ -93,7 +92,7 @@ class TestBody extends Component {
     
     return(
       <div>
-        <TestInfo timeLeft={currentTest.timeLeft}/>
+        <TestInfo timeLeft={currentTest.timeLeft} level={currentTest.level}/>
         {showTest}
       </div>
     );

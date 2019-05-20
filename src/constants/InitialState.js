@@ -18,7 +18,7 @@ export const initialState = {
   },
   currentTest: {
     factIndex: 0,
-    level: 'F',
+    level: 'E',
     operator: '+',
     timeLeft: null,
     correctAnswers: 0,

@@ -9,7 +9,7 @@ const songList = {
 
 export const initialState = {
   user: {
-    userId: 1,
+    id: 1,
     name: "Anya",
     username: "anyat",
     operator: "+",

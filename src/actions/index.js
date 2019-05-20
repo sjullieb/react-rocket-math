@@ -33,8 +33,16 @@ export const completeTest = () => ({
   type: types.COMPLETE_TEST
 })
 
-export const saveCurrentTest = () => ({
-  type: types.SAVE_CURRENT_TEST
+export const saveCurrentTest = (testId, userId, level, operator, correctAnswers, pass, timestamp, facts) => ({
+  type: types.SAVE_CURRENT_TEST,
+  testId: testId, 
+  userId: userId, 
+  level: level, 
+  operator: operator, 
+  correctAnswers: correctAnswers, 
+  pass: pass, 
+  timestamp: timestamp, 
+  facts: facts
 })
 
 //------------------------

@@ -70,34 +70,86 @@ export const initialState = {
       { term1: 5, term2: 9, result: 14, answer: null }
     ]
   },
-  sets: {
-    1: {
-      timeStamp: null,
+  masterSets: {
+    "A+": {
+      id: "A+",
       operator: "+",
-      level: "D",
-      result: "pass",
-      correctAnswers: 4,
-      facts: [
-        { term1: 5, term2: 2, result: 7, answer: 7 },
-        { term1: 6, term2: 8, result: 14, answer: 14 },
-        { term1: 7, term2: 1, result: 9, answer: 10 },
-        { term1: 5, term2: 9, result: 14, answer: 14 }
-      ]
+      level: "A",
+      facts: [1, 2, 3]
     },
-    2: {
-      timeStamp: null,
+    "B+": {
+      operator: "+",
+      level: "B",
+      facts: [2, 4, 5]
+    },
+    "C+": {
+      operator: "+",
+      level: "C",
+      facts: [2, 3, 5]
+    },
+    "D+": {
       operator: "+",
       level: "D",
-      result: "fail",
-      correctAnswers: 3,
-      facts: [
-        { term1: 5, term2: 2, result: 7, answer: 7 },
-        { term1: 6, term2: 8, result: 14, answer: 14 },
-        { term1: 7, term2: 1, result: 9, answer: 10 },
-        { term1: 5, term2: 9, result: 14, answer: null }
-      ]
+      facts: [1, 4, 5]
+    },
+    "E+": {
+      operator: "+",
+      level: "E",
+      facts: [2, 6, 8]
+    },
+    "F+": {
+      operator: "+",
+      level: "F",
+      facts: [3, 1, 10]
+    },
+    "G+": {
+      operator: "+",
+      level: "G",
+      facts: [6, 8, 5]
+    },
+    "H+": {
+      operator: "+",
+      level: "H",
+      facts: [4, 9, 5]
+    },
+    "I+": {
+      operator: "+",
+      level: "I",
+      facts: [7, 3, 10]
+    },
+    "J+": {
+      operator: "+",
+      level: "J",
+      facts: [3, 7, 1]
+    },
+    "K+": {
+      operator: "+",
+      level: "K",
+      facts: [9, 4, 4]
+    },
+    "L+": {
+      operator: "+",
+      level: "L",
+      facts: [10, 8, 5]
+    },
+    "M+": {
+      operator: "+",
+      level: "M",
+      facts: [1, 9, 3]
     }
   },
+  masterFacts: {
+    1:  { term1: 1, term2: 3, result: 4 },
+    2:  { term1: 2, term2: 3, result: 5 },
+    3:  { term1: 3, term2: 4, result: 7 },
+    4:  { term1: 4, term2: 2, result: 6 },
+    5:  { term1: 5, term2: 3, result: 8 },
+    6:  { term1: 6, term2: 5, result: 11 },
+    7:  { term1: 7, term2: 3, result: 10 },
+    8:  { term1: 8, term2: 4, result: 12 },
+    9:  { term1: 9, term2: 2, result: 11 },
+    10: { term1: 1, term2: 9, result: 10 }    
+  }
 // ---------------------------------
   currentSongId: 1,
   songsById: {

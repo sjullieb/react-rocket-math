@@ -84,7 +84,7 @@ class TestBody extends Component {
     let showTest;
     
     if(currentTest.timeLeft > 0){
-      showTest = <FactForm fact={facts[factIndex]}  onAnswerSubmission={this.handleAnswerSubmission} factNo={factIndex+1} totalNo={facts.length}/>
+      showTest = <FactForm fact={facts[factIndex]} operator={currentTest.operator} onAnswerSubmission={this.handleAnswerSubmission} factNo={factIndex+1} totalNo={facts.length}/>
     } else {
       showTest = <p>Test is over!</p>
     }
@@ -92,7 +92,7 @@ class TestBody extends Component {
     
     return(
       <div>
-        <TestInfo timeLeft={currentTest.timeLeft} level={currentTest.level}/>
+        <TestInfo timeLeft={currentTest.timeLeft} operator={currentTest.operator} level={currentTest.level}/>
         {showTest}
       </div>
     );

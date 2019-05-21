@@ -15,11 +15,13 @@ function App({ user, testList, shownTestId }){
   console.log(!!shownTestId);
   
   
-  let shownTestDetails = "";
+  let shownTestDetails = null;
   if(!!shownTestId){
-    shownTestDetails = <FactsList factList={testList[shownTestId].facts} />;
+    shownTestDetails = <FactsList factList={testList[shownTestId].facts} operator={testList[shownTestId].operator} test={testList[shownTestId]}/>;
   }
 
+  console.log("shownTestDetails for ", shownTestId);
+  
   console.log(shownTestDetails);
   
   return (

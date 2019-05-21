@@ -1,6 +1,4 @@
 import React from 'react';
-import SongDisplay from './SongDisplay';
-import SongList from './SongList';
 import TestBody from './TestBody';
 import Header from './Header';
 import UserInfo from "./UserInfo";
@@ -26,6 +24,11 @@ function App({ user, testList, shownTestId }){
   
   return (
     <div>
+      <style jsx global>{`
+        div{
+          font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+        }
+      `}</style>
       <Header />
       <br/>
       <UserInfo name={user.name} currentLevel={user.level}/>

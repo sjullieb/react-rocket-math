@@ -62,6 +62,11 @@ export const updateTimer = (timeLeft) => ({
 export const stopTimer = () => ({
   type: types.STOP_TIMER
 })
+
+export const changeShownTest = (testId) => ({
+  type: types.CHANGE_SHOWN_TEST,
+  testId: testId
+})
 //------------------------
 
 export const nextLyric = currentSongId => ({

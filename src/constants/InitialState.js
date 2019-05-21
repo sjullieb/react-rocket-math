@@ -8,6 +8,7 @@ const songList = {
 };
 
 export const initialState = {
+  shownTestId: null,
   user: {
     id: 25,
     name: "Anya",

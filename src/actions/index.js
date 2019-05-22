@@ -16,6 +16,10 @@ export const checkAnswer = factId => ({
   factId
 });
 
+export const updateCorrectAnswers = () => ({
+  type: types.UPDATE_CORRECT_ANSWERS
+});
+
 export const updatePass = () => ({
   type: types.UPDATE_PASS
 });
@@ -84,7 +88,7 @@ export const createNewTest = (level, operator, timer, facts) => ({
   facts: facts
 });
 
-export const clearCurrentTest = () => ({});
+export const clearCurrentTest = () => ({ type: types.CLEAR_CURRENT_TEST });
 
 // export const startTest = (level, operator, timeLeft) => {
 //   console.log(getState());

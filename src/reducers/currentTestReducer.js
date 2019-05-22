@@ -7,7 +7,8 @@ const currentTestReducer = (state = {}, action) => {
   switch (action.type) {
     case types.INITIALIZE_STATE:
       return state;
-
+    case types.CLEAR_CURRENT_TEST:
+      return {};
     case types.NEXT_FACT_INDEX:
       let nextFactIndex = state.factIndex + 1;
       newCurrentTestSlice = Object.assign({}, state, {
@@ -19,6 +20,13 @@ const currentTestReducer = (state = {}, action) => {
       newFactsArray = state.facts.slice();
       newFactsArray[action.factId].answer = action.answer;
       newCurrentTestSlice = Object.assign({}, state, { facts: newFactsArray });
+      return newCurrentTestSlice;
+
+    case types.UPDATE_CORRECT_ANSWERS:
+      let correctAnswers = state.correctAnswers + 1;
+      newCurrentTestSlice = Object.assign({}, state, {
+        correctAnswers: correctAnswers
+      });
       return newCurrentTestSlice;
 
     case types.CHECK_ANSWER:
@@ -36,7 +44,6 @@ const currentTestReducer = (state = {}, action) => {
         console.log("Wrong Answer");
         return state;
       }
-
     case types.UPDATE_PASS:
       let pass = state.correctAnswers == state.facts.length;
       newCurrentTestSlice = Object.assign({}, state, { pass: pass.toString() });

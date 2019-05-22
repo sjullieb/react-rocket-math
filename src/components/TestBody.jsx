@@ -10,6 +10,7 @@ import {
   completeTest,
   nextFactIndex,
   checkAnswer,
+  updateCorrectAnswers,
   updatePass,
   updateComplete,
   saveCurrentTest,
@@ -24,6 +25,7 @@ class TestBody extends Component {
   constructor(props) {
     super(props);
     this.handleAnswerSubmission = this.handleAnswerSubmission.bind(this);
+    this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
   }
 
   startTimer() {
@@ -42,7 +44,7 @@ class TestBody extends Component {
   }
 
   componentWillUnmount() {
-    clearTimer();
+    this.clearTimer();
   }
 
   updateTestTime() {
@@ -66,7 +68,11 @@ class TestBody extends Component {
     const { userId } = this.props.user.id;
     dispatch(saveAnswer(factIndex, parseInt(answer)));
 
-    dispatch(checkAnswer(factIndex));
+    if (facts[factIndex].result == answer) {
+      dispatch(updateCorrectAnswers());
+    }
+
+    // dispatch(checkAnswer(factIndex));
 
     if (factIndex == facts.length - 1) {
       // test is completed

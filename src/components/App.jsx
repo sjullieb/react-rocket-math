@@ -34,7 +34,7 @@ function App({
   let currentTestSection = null;
   console.log("currentTest", currentTest);
 
-  if (currentTest.hasOwnProperty("timeLeft") == false) {
+  if (currentTest.hasOwnProperty("timestamp") == false) {
     console.log("newTest component");
     console.log(user);
 

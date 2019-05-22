@@ -1,27 +1,36 @@
-import React, { Component } from 'react';
-import TestInfo from './TestInfo';
-import FactForm from './FactForm';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import TestInfo from "./TestInfo";
+import FactForm from "./FactForm";
+import { connect } from "react-redux";
 import constants from "./../constants";
-import { v4 } from 'uuid';
-import { saveAnswer, initializeState, completeTest, nextFactIndex, checkAnswer, updatePass, updateComplete, saveCurrentTest, saveUserTest, updateUserLevel, updateTimer, stopTimer } from "./../actions";
+import { v4 } from "uuid";
+import {
+  saveAnswer,
+  initializeState,
+  completeTest,
+  nextFactIndex,
+  checkAnswer,
+  updatePass,
+  updateComplete,
+  saveCurrentTest,
+  saveUserTest,
+  updateUserLevel,
+  updateTimer,
+  stopTimer
+} from "./../actions";
 
 class TestBody extends Component {
-  
-  constructor(props){
+  constructor(props) {
     super(props);
     this.handleAnswerSubmission = this.handleAnswerSubmission.bind(this);
   }
 
-  startTimer(){
+  startTimer() {
     this.props.dispatch(updateTimer(10000));
-    this.testTimer = setInterval(() =>
-      this.updateTestTime(),
-    1000
-    );
+    this.testTimer = setInterval(() => this.updateTestTime(), 1000);
   }
 
-  clearTimer(){
+  clearTimer() {
     this.props.dispatch(stopTimer());
     clearInterval(this.testTimer);
   }
@@ -31,35 +40,54 @@ class TestBody extends Component {
     this.startTimer();
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearTimer();
   }
 
-  updateTestTime(){
-    if(this.props.currentTest.timeLeft > 0){
+  updateTestTime() {
+    if (this.props.currentTest.timeLeft > 0) {
       this.props.dispatch(updateTimer(this.props.currentTest.timeLeft - 1000));
     } else {
       this.clearTimer();
     }
   }
 
-  handleAnswerSubmission(answer){
+  handleAnswerSubmission(answer) {
     const { dispatch } = this.props;
-    const { factIndex, facts, level, operator, correctAnswers, pass } = this.props.currentTest;
+    const {
+      factIndex,
+      facts,
+      level,
+      operator,
+      correctAnswers,
+      pass
+    } = this.props.currentTest;
     const { userId } = this.props.user.id;
     dispatch(saveAnswer(factIndex, parseInt(answer)));
-    
+
     dispatch(checkAnswer(factIndex));
-    
-    if(factIndex == facts.length - 1){  // test is completed
+
+    if (factIndex == facts.length - 1) {
+      // test is completed
       dispatch(updatePass()); // check if test is passed
       dispatch(updateComplete()); // update test completness
       dispatch(completeTest()); //??
-     
+
       const testId = v4();
-      
+
       // add test to the testById
-      dispatch(saveCurrentTest(testId, userId, level, operator, this.props.currentTest.correctAnswers, this.props.currentTest.pass, this.props.currentTest.timestamp, facts))    
+      dispatch(
+        saveCurrentTest(
+          testId,
+          userId,
+          level,
+          operator,
+          this.props.currentTest.correctAnswers,
+          this.props.currentTest.pass,
+          this.props.currentTest.timestamp,
+          facts
+        )
+      );
 
       // add testId to the user's tests arrya
       dispatch(saveUserTest(testId));
@@ -73,26 +101,37 @@ class TestBody extends Component {
 
       // stop timer
       this.clearTimer();
-
-    } else { // increase factIndex
+    } else {
+      // increase factIndex
       dispatch(nextFactIndex());
     }
-  };
+  }
 
-  render(){
+  render() {
     const { factIndex, facts, currentTest, complete } = this.props;
     let showTest;
-    
-    if(currentTest.timeLeft > 0){
-      showTest = <FactForm fact={facts[factIndex]} operator={currentTest.operator} onAnswerSubmission={this.handleAnswerSubmission} factNo={factIndex+1} totalNo={facts.length}/>
+
+    if (currentTest.timeLeft > 0) {
+      showTest = (
+        <FactForm
+          fact={facts[factIndex]}
+          operator={currentTest.operator}
+          onAnswerSubmission={this.handleAnswerSubmission}
+          factNo={factIndex + 1}
+          totalNo={facts.length}
+        />
+      );
     } else {
-      showTest = <p>Test is over!</p>
+      showTest = <p>Test is over!</p>;
     }
 
-    
-    return(
+    return (
       <div>
-        <TestInfo timeLeft={currentTest.timeLeft} operator={currentTest.operator} level={currentTest.level}/>
+        <TestInfo
+          timeLeft={currentTest.timeLeft}
+          operator={currentTest.operator}
+          level={currentTest.level}
+        />
         {showTest}
       </div>
     );

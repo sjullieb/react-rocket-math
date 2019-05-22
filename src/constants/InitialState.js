@@ -19,8 +19,8 @@ export const initialState = {
   },
   currentTest: {
     factIndex: 0,
-    level: 'E',
-    operator: '+',
+    level: "E",
+    operator: "+",
     timeLeft: null,
     correctAnswers: 0,
     complete: "false",
@@ -44,7 +44,7 @@ export const initialState = {
       facts: [
         { term1: 2, term2: 3, result: 5, answer: 6 },
         { term1: 5, term2: 6, result: 11, answer: null }
-      ]      
+      ]
     },
     2: {
       id: 2,
@@ -57,7 +57,7 @@ export const initialState = {
       facts: [
         { term1: 2, term2: 3, result: 5, answer: 5 },
         { term1: 5, term2: 6, result: 11, answer: 11 }
-      ]      
+      ]
     }
   },
 
@@ -139,18 +139,18 @@ export const initialState = {
     }
   },
   masterFacts: {
-    1:  { term1: 1, term2: 3, result: 4 },
-    2:  { term1: 2, term2: 3, result: 5 },
-    3:  { term1: 3, term2: 4, result: 7 },
-    4:  { term1: 4, term2: 2, result: 6 },
-    5:  { term1: 5, term2: 3, result: 8 },
-    6:  { term1: 6, term2: 5, result: 11 },
-    7:  { term1: 7, term2: 3, result: 10 },
-    8:  { term1: 8, term2: 4, result: 12 },
-    9:  { term1: 9, term2: 2, result: 11 },
-    10: { term1: 1, term2: 9, result: 10 }    
-  }
-// ---------------------------------
+    1: { term1: 1, term2: 3, result: 4 },
+    2: { term1: 2, term2: 3, result: 5 },
+    3: { term1: 3, term2: 4, result: 7 },
+    4: { term1: 4, term2: 2, result: 6 },
+    5: { term1: 5, term2: 3, result: 8 },
+    6: { term1: 6, term2: 5, result: 11 },
+    7: { term1: 7, term2: 3, result: 10 },
+    8: { term1: 8, term2: 4, result: 12 },
+    9: { term1: 9, term2: 2, result: 11 },
+    10: { term1: 1, term2: 9, result: 10 }
+  },
+  // ---------------------------------
   currentSongId: 1,
   songsById: {
     1: {

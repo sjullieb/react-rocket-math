@@ -11,7 +11,7 @@ export const saveAnswer = (factId, answer) => ({
   answer
 });
 
-export const checkAnswer = (factId) => ({
+export const checkAnswer = factId => ({
   type: types.CHECK_ANSWER,
   factId
 });
@@ -24,49 +24,100 @@ export const updateComplete = () => ({
   type: types.UPDATE_COMPLETE
 });
 
-
 export const nextFactIndex = () => ({
   type: types.NEXT_FACT_INDEX
-})
+});
 
 export const completeTest = () => ({
   type: types.COMPLETE_TEST
-})
+});
 
-export const saveCurrentTest = (testId, userId, level, operator, correctAnswers, pass, timestamp, facts) => ({
+export const saveCurrentTest = (
+  testId,
+  userId,
+  level,
+  operator,
+  correctAnswers,
+  pass,
+  timestamp,
+  facts
+) => ({
   type: types.SAVE_CURRENT_TEST,
-  testId: testId, 
-  userId: userId, 
-  level: level, 
-  operator: operator, 
-  correctAnswers: correctAnswers, 
-  pass: pass, 
-  timestamp: timestamp, 
+  testId: testId,
+  userId: userId,
+  level: level,
+  operator: operator,
+  correctAnswers: correctAnswers,
+  pass: pass,
+  timestamp: timestamp,
   facts: facts
-})
+});
 
-export const saveUserTest = (testId) => ({
+export const saveUserTest = testId => ({
   type: types.SAVE_USER_TEST,
   testId: testId
-})
+});
 
 export const updateUserLevel = () => ({
   type: types.UPDATE_USER_LEVEL
-})
+});
 
-export const updateTimer = (timeLeft) => ({
+export const updateTimer = timeLeft => ({
   type: types.UPDATE_TIMER,
   timeLeft: timeLeft
-})
+});
 
 export const stopTimer = () => ({
   type: types.STOP_TIMER
-})
+});
 
-export const changeShownTest = (testId) => ({
+export const changeShownTest = testId => ({
   type: types.CHANGE_SHOWN_TEST,
   testId: testId
-})
+});
+
+export const createNewTest = (level, operator, timer, facts) => ({
+  type: types.CREATE_NEW_TEST,
+  level: level,
+  operator: operator,
+  timer: timer,
+  facts: facts
+});
+
+// export const startTest = (level, operator, timeLeft) => {
+//   console.log(getState());
+
+//   return (dispatch, getState) => {
+//     console.log(this);
+
+//     const setId = level + operator;
+//     const set = this.getState().masterSets[setId];
+//     //const set = getSet(level + operator); // returns set from masterSets with id = level + operator
+//     const factIds = set.facts;
+//     //const facts = getFactsArray(factIds); // forms array of fact objects
+//     const facts = factIds.map(id => {
+//       Object.assign({}, this.getState().masterFacts[id], { answer: null });
+//     });
+//     console.log(facts);
+//     dispatch(createNewTest(level, operator, timeLeft, facts));
+//   };
+// };
+
+// function setSelection(selectedWidgetId) {
+//   return (dispatch, getState) => {
+
+//       const {widgets} = this.getState();
+//       const coordinates = getSelectionCoordinates(widgets, selectedWidgetIds);
+
+//       dispatch({
+//           type: SET_SELECTION,
+//           payload: {
+//               widgets: selectedWidgets,
+//               x: coordinates.x,
+//               y: coordinates.y
+//           }
+//       });
+// }
 //------------------------
 
 export const nextLyric = currentSongId => ({

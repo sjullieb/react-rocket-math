@@ -12,5 +12,7 @@ export const UPDATE_USER_LEVEL = "UPDATE_USER_LEVEL";
 export const UPDATE_TIMER = "UPDATE_TIMER";
 export const STOP_TIMER = "STOP_TIMER";
 export const CHANGE_SHOWN_TEST = "CHANGE_SHOWN_TEST";
+export const START_TEST = "START_TEST";
+export const CREATE_NEW_TEST = "CREATE_NEW_TEST";
 // export const UPDATE_TIME_LEFT = "UPDATE_TIMER";
 // export const SET_TIMER = "SET_TIMER";

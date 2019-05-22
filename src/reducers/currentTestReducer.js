@@ -10,45 +10,67 @@ const currentTestReducer = (state = initialState.currentTest, action) => {
 
     case types.NEXT_FACT_INDEX:
       let nextFactIndex = state.factIndex + 1;
-      newCurrentTestSlice = Object.assign({}, state, {factIndex: nextFactIndex});    
+      newCurrentTestSlice = Object.assign({}, state, {
+        factIndex: nextFactIndex
+      });
       return newCurrentTestSlice;
 
     case types.SAVE_ANSWER:
       newFactsArray = state.facts.slice();
       newFactsArray[action.factId].answer = action.answer;
-      newCurrentTestSlice = Object.assign({}, state, {facts: newFactsArray});         
+      newCurrentTestSlice = Object.assign({}, state, { facts: newFactsArray });
       return newCurrentTestSlice;
 
     case types.CHECK_ANSWER:
-      if(state.facts[action.factId].answer == state.facts[action.factId].result){ 
-                
+      if (
+        state.facts[action.factId].answer == state.facts[action.factId].result
+      ) {
         let newCorrectAnswers = state.correctAnswers + 1;
-        newCurrentTestSlice = Object.assign({}, state, {correctAnswers: newCorrectAnswers});         
+        newCurrentTestSlice = Object.assign({}, state, {
+          correctAnswers: newCorrectAnswers
+        });
         console.log("Correct Answer");
-        console.log(newCurrentTestSlice);                  
+        console.log(newCurrentTestSlice);
         return newCurrentTestSlice;
       } else {
-        console.log("Wrong Answer");        
+        console.log("Wrong Answer");
         return state;
       }
 
     case types.UPDATE_PASS:
-      let pass = (state.correctAnswers == state.facts.length);
-      newCurrentTestSlice = Object.assign({}, state, {pass: pass.toString()});     
+      let pass = state.correctAnswers == state.facts.length;
+      newCurrentTestSlice = Object.assign({}, state, { pass: pass.toString() });
       return newCurrentTestSlice;
 
-    case types.UPDATE_COMPLETE:      
-      newCurrentTestSlice = Object.assign({}, state, {complete: "true"});           
+    case types.UPDATE_COMPLETE:
+      newCurrentTestSlice = Object.assign({}, state, { complete: "true" });
       return newCurrentTestSlice;
 
     case types.UPDATE_TIMER:
-      newCurrentTestSlice = Object.assign({}, state, {timeLeft: action.timeLeft});
+      newCurrentTestSlice = Object.assign({}, state, {
+        timeLeft: action.timeLeft
+      });
       return newCurrentTestSlice;
 
     case types.STOP_TIMER:
-        newCurrentTestSlice = Object.assign({}, state, {timeLeft: 0});
-        return newCurrentTestSlice;
-              
+      newCurrentTestSlice = Object.assign({}, state, { timeLeft: 0 });
+      return newCurrentTestSlice;
+
+    case types.CREATE_NEW_TEST:
+      newCurrentTestSlice = Object.assign(
+        {},
+        {
+          factIndex: 0,
+          level: action.level,
+          operator: action.operator,
+          timeLeft: action.timer,
+          correctAnswers: 0,
+          complete: "false",
+          pass: "false",
+          timestamp: Date.now(),
+          facts: action.facts
+        }
+      );
     case types.COMPLETE_TEST:
       return state;
     // 1. save object to tests

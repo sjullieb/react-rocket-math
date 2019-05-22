@@ -6,6 +6,7 @@ import testsReducer from "./testsReducer";
 import userReducer from "./userReducer";
 import testChangeReducer from "./testChangeReducer";
 import masterSetsReducer from "./masterSetsReducer";
+import masterFactsReducer from "./masterFactsReducer";
 
 const rootReducer = combineReducers({
   currentSongId: songChangeReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   user: userReducer,
   testsById: testsReducer,
   shownTestId: testChangeReducer,
-  masterSets: masterSetsReducer
+  masterSets: masterSetsReducer,
+  masterFacts: masterFactsReducer
 });
 
 export default rootReducer;

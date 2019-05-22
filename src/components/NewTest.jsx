@@ -1,42 +1,68 @@
 import React from "react";
+import { connect } from "react-redux";
+import { createNewTest } from "../actions";
 
-function NewTest({ currentLevel, operator }) {
-  let _answer = null;
+function NewTest({ user, masterSets, masterFacts, dispatch }) {
+  console.log("new test");
+
+  const { level, operator, timer } = user;
+  //let _answer = null;
   //console.log(fact);
   //console.log(onAnswerSubmission);
 
-  const { term1, term2 } = fact;
+  // const { term1, term2 } = fact;
 
-  function handleAnswerSubmission(event) {
-    event.preventDefault();
-    onAnswerSubmission(_answer.value);
-    _answer.value = "";
+  // function handleAnswerSubmission(event) {
+  //   event.preventDefault();
+  //   onAnswerSubmission(_answer.value);
+  //   _answer.value = "";
+  // }
+
+  function StartNewTest(level, operator, timer) {
+    console.log(masterFacts);
+
+    const setId = level + operator;
+    const factIds = masterSets[setId].facts;
+    const facts = factIds.map(factId => {
+      console.log(masterFacts[factId]);
+      return Object.assign({}, masterFacts[factId], { answer: null });
+    });
+
+    let currentTest = Object.assign(
+      {},
+      {
+        factIndex: 0,
+        level: level,
+        operator: operator,
+        timeLeft: timer,
+        correctAnswers: 0,
+        complete: "false",
+        pass: "false",
+        timestamp: Date.now(),
+        facts: facts
+      }
+    );
+    console.log(currentTest);
+
+    dispatch(createNewTest(level, operator, timer, facts));
+  }
+
+  function handleStartTestButtonClick() {
+    StartNewTest(level, operator, timer);
   }
 
   return (
     <div>
-      <form onSubmit={handleAnswerSubmission}>
-        <label>
-          {factNo} / {totalNo}
-        </label>
-        <br />
-        <label>{term1}</label>
-        <br />
-        <label>{operator}</label>
-        <br />
-        <label>{term2}</label>
-        <br />
-        <hr />
-        <input
-          type="number"
-          ref={input => {
-            _answer = input;
-          }}
-        />
-        <button type="submit">Next</button>
-      </form>
+      <button onClick={handleStartTestButtonClick}>Start the test!</button>
     </div>
   );
 }
 
-export default NewTest;
+const mapStateToProps = state => {
+  return {
+    masterSets: state.masterSets,
+    masterFacts: state.masterFacts
+  };
+};
+
+export default connect(mapStateToProps)(NewTest);

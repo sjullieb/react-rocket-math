@@ -84,6 +84,8 @@ export const createNewTest = (level, operator, timer, facts) => ({
   facts: facts
 });
 
+export const clearCurrentTest = () => ({});
+
 // export const startTest = (level, operator, timeLeft) => {
 //   console.log(getState());
 

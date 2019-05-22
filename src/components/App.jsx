@@ -4,44 +4,20 @@ import Header from "./Header";
 import UserInfo from "./UserInfo";
 import TestList from "./TestList";
 import FactsList from "./FactsList";
+import NewTest from "./NewTest";
 import { connect } from "react-redux";
-import { startTest } from "./../actions";
+import { createNewTest } from "./../actions";
 import store from "./../index";
 
 function App({
   user,
   testList,
   shownTestId,
+  currentTest,
   dispatch,
   masterFacts,
   masterSets
 }) {
-  function StartNewTest(level, operator, timer) {
-    console.log(masterSets);
-
-    const setId = level + operator;
-    const factIds = masterSets[setId].facts;
-    const facts = factIds.map(factId => {
-      Object.assign({}, this, masterFacts[factId], { answer: null });
-    });
-
-    let currentTest = Object.assign(
-      {},
-      {
-        factIndex: 0,
-        level: level,
-        operator: operator,
-        timeLeft: timer,
-        correctAnswers: 0,
-        complete: "false",
-        pass: "false",
-        timestamp: Date.now(),
-        facts: facts
-      }
-    );
-    dispatch(startTest(level, operator, timer, facts));
-  }
-
   //console.log(getState());
 
   let shownTestDetails = null;
@@ -55,10 +31,24 @@ function App({
     );
   }
 
+  let currentTestSection = null;
+  console.log("currentTest", currentTest);
+
+  if (currentTest.hasOwnProperty("timeLeft") == false) {
+    console.log("newTest component");
+    console.log(user);
+
+    currentTestSection = <NewTest user={user} />;
+  } else {
+    console.log("running test");
+
+    currentTestSection = <TestBody user={user} />;
+  }
+
   console.log("shownTestDetails for ", shownTestId);
 
   console.log(shownTestDetails);
-  StartNewTest("E", "+", 60000);
+  //StartNewTest("E", "+", 60000);
 
   return (
     <div>
@@ -72,7 +62,7 @@ function App({
       <UserInfo name={user.name} currentLevel={user.level} />
       {shownTestDetails}
       <TestList testList={testList} />
-      <TestBody user={user} />
+      {currentTestSection}
     </div>
   );
 }
@@ -82,6 +72,7 @@ const mapStateToProps = state => {
     user: state.user,
     shownTestId: state.shownTestId,
     testList: state.testsById,
+    currentTest: state.currentTest,
     masterSets: state.masterSets,
     masterFacts: state.masterFacts
   };

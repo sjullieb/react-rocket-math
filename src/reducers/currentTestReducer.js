@@ -1,7 +1,7 @@
 import constants from "../constants";
 const { initialState, types } = constants;
 
-const currentTestReducer = (state = initialState.currentTest, action) => {
+const currentTestReducer = (state = {}, action) => {
   let newFactsArray;
   let newCurrentTestSlice;
   switch (action.type) {
@@ -71,6 +71,7 @@ const currentTestReducer = (state = initialState.currentTest, action) => {
           facts: action.facts
         }
       );
+      return newCurrentTestSlice;
     case types.COMPLETE_TEST:
       return state;
     // 1. save object to tests

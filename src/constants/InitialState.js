@@ -15,6 +15,7 @@ export const initialState = {
     username: "anyat",
     operator: "+",
     level: "E",
+    testTime: 1000,
     tests: [1, 2]
   },
   currentTest: {

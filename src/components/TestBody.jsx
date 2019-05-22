@@ -16,7 +16,8 @@ import {
   saveUserTest,
   updateUserLevel,
   updateTimer,
-  stopTimer
+  stopTimer,
+  clearCurrentTest
 } from "./../actions";
 
 class TestBody extends Component {
@@ -26,7 +27,7 @@ class TestBody extends Component {
   }
 
   startTimer() {
-    this.props.dispatch(updateTimer(10000));
+    this.props.dispatch(updateTimer(this.props.user.testTime));
     this.testTimer = setInterval(() => this.updateTestTime(), 1000);
   }
 
@@ -107,6 +108,10 @@ class TestBody extends Component {
     }
   }
 
+  handleBackButtonClick() {
+    this.props.dispatch(clearCurrentTest());
+  }
+
   render() {
     const { factIndex, facts, currentTest, complete } = this.props;
     let showTest;
@@ -122,7 +127,12 @@ class TestBody extends Component {
         />
       );
     } else {
-      showTest = <p>Test is over!</p>;
+      showTest = (
+        <div>
+          <p>Test is over!</p>
+          <button onClick={this.handleBackButtonClick}>Go back</button>
+        </div>
+      );
     }
 
     return (

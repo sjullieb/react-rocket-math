@@ -1,8 +1,11 @@
-import React from 'react';
-
-function Header(){
+import React from "react";
+import stars from "../assets/images/stars.png";
+var mainStyle = {
+  background: "red"
+};
+function Header() {
   return (
-    <div>
+    <div style={mainStyle}>
       <h1>Rocket Math</h1>
     </div>
   );
